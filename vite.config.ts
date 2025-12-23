@@ -1,4 +1,4 @@
-import { fileURLToPath, URL } from 'node:url'
+import { URL, fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import { devtools } from '@tanstack/devtools-vite'
 import viteReact from '@vitejs/plugin-react'
