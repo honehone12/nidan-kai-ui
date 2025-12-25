@@ -10,33 +10,79 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VerifyIndexRouteImport } from './routes/verify/index'
+import { Route as SetupIndexRouteImport } from './routes/setup/index'
+import { Route as VerifyResultIndexRouteImport } from './routes/verify/result/index'
+import { Route as SetupQrIndexRouteImport } from './routes/setup/qr/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VerifyIndexRoute = VerifyIndexRouteImport.update({
+  id: '/verify/',
+  path: '/verify/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetupIndexRoute = SetupIndexRouteImport.update({
+  id: '/setup/',
+  path: '/setup/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerifyResultIndexRoute = VerifyResultIndexRouteImport.update({
+  id: '/verify/result/',
+  path: '/verify/result/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetupQrIndexRoute = SetupQrIndexRouteImport.update({
+  id: '/setup/qr/',
+  path: '/setup/qr/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/setup': typeof SetupIndexRoute
+  '/verify': typeof VerifyIndexRoute
+  '/setup/qr': typeof SetupQrIndexRoute
+  '/verify/result': typeof VerifyResultIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/setup': typeof SetupIndexRoute
+  '/verify': typeof VerifyIndexRoute
+  '/setup/qr': typeof SetupQrIndexRoute
+  '/verify/result': typeof VerifyResultIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/setup/': typeof SetupIndexRoute
+  '/verify/': typeof VerifyIndexRoute
+  '/setup/qr/': typeof SetupQrIndexRoute
+  '/verify/result/': typeof VerifyResultIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/setup' | '/verify' | '/setup/qr' | '/verify/result'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/setup' | '/verify' | '/setup/qr' | '/verify/result'
+  id:
+    | '__root__'
+    | '/'
+    | '/setup/'
+    | '/verify/'
+    | '/setup/qr/'
+    | '/verify/result/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SetupIndexRoute: typeof SetupIndexRoute
+  VerifyIndexRoute: typeof VerifyIndexRoute
+  SetupQrIndexRoute: typeof SetupQrIndexRoute
+  VerifyResultIndexRoute: typeof VerifyResultIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +94,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/verify/': {
+      id: '/verify/'
+      path: '/verify'
+      fullPath: '/verify'
+      preLoaderRoute: typeof VerifyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/setup/': {
+      id: '/setup/'
+      path: '/setup'
+      fullPath: '/setup'
+      preLoaderRoute: typeof SetupIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verify/result/': {
+      id: '/verify/result/'
+      path: '/verify/result'
+      fullPath: '/verify/result'
+      preLoaderRoute: typeof VerifyResultIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/setup/qr/': {
+      id: '/setup/qr/'
+      path: '/setup/qr'
+      fullPath: '/setup/qr'
+      preLoaderRoute: typeof SetupQrIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SetupIndexRoute: SetupIndexRoute,
+  VerifyIndexRoute: VerifyIndexRoute,
+  SetupQrIndexRoute: SetupQrIndexRoute,
+  VerifyResultIndexRoute: VerifyResultIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

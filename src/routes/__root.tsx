@@ -22,4 +22,11 @@ export const Route = createRootRoute({
       />
     </>
   ),
+  errorComponent: () => {
+    return (
+      <>
+        <p>Error 😵</p>
+      </>
+    )
+  },
 })

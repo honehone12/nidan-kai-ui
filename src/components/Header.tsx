@@ -16,15 +16,16 @@ export default function Header() {
         >
           <Menu size={24} />
         </button>
-        <h1 className="ml-4 text-xl font-semibold">
-          <Link to="/">
+        <Link to="/">
+          <div className="flex flex-row">
+            <h1 className="mx-4 text-4xl font-semibold">NidanKai</h1>
             <img
-              src="/tanstack-word-logo-white.svg"
+              src="/tanstack-circle-logo.png"
               alt="TanStack Logo"
               className="h-10"
             />
-          </Link>
-        </h1>
+          </div>
+        </Link>
       </header>
 
       <aside
