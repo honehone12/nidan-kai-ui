@@ -18,7 +18,8 @@ function RouteComponent() {
             type="email"
             required
             placeholder="email@email.com"
-            className="input validator w-100"
+            title="Email"
+            className="input validator w-90"
           />
         </div>
         <div className="mb-10">

@@ -5,5 +5,9 @@ export const Route = createFileRoute('/verify/result/')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/verify/result/"!</div>
+  return (
+    <main className="flex min-h-screen items-center justify-center">
+      <p className="text-2xl">OK</p>
+    </main>
+  )
 }
