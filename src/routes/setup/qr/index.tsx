@@ -8,7 +8,7 @@ export const Route = createFileRoute('/setup/qr/')({
   validateSearch: EMAIL_QUERY_SCHEMA,
 })
 
-let qrPromise: Promise<string> | null = null
+let __qrPromise: Promise<string> | null = null
 
 function RouteComponent() {
   const { email } = Route.useSearch()
@@ -42,14 +42,14 @@ function RouteComponent() {
     return await res.text()
   }
 
-  if (!qrPromise) {
-    qrPromise = load()
+  if (!__qrPromise) {
+    __qrPromise = load()
   }
 
   return (
     <main className="flex min-h-screen items-center justify-center">
       <Suspense fallback={<Loading />}>
-        <QR loadPromise={qrPromise} />
+        <QR loadPromise={__qrPromise} />
       </Suspense>
     </main>
   )
